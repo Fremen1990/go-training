@@ -19,11 +19,19 @@ func main() {
 	//c.Add(1,2)
 
 	//exercises.MonetaryAmountExercise()
-	exercises.TicTacToeExercise()
+	//exercises.TicTacToeExercise()
 
 	/*var col, row int
 	tokensCount, err := fmt.Scanln(&col, &row)
 	fmt.Println(tokensCount, err, row, col)*/
+
+	/*var budget = exercises.Budget{}
+	budget.Add(exercises.NewBudgetEntry(20.0, exercises.Deposit, "Bonus"))
+	budget.Add(exercises.NewBudgetEntry(10.0, exercises.Withdraw, "Cinema"))*/
+	budget := exercises.Load()
+	budget.FromArgs()
+	budget.Print()
+	budget.Save()
 
 }
 

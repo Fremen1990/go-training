@@ -1,0 +1,22 @@
+{
+	"entries": [
+		{
+			"amount": 20,
+			"operationType": 0,
+			"timestamp": "2024-11-08T16:05:59.644337+01:00",
+			"description": "Bonus"
+		},
+		{
+			"amount": 10,
+			"operationType": 1,
+			"timestamp": "2024-11-08T16:05:59.644337+01:00",
+			"description": "Cinema"
+		},
+		{
+			"amount": 100,
+			"operationType": 1,
+			"timestamp": "2024-11-08T16:18:11.0173431+01:00",
+			"description": "Diner"
+		}
+	]
+}
