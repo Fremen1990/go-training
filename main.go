@@ -60,7 +60,7 @@ func main() {
 
 	if inputValue%2 == 0 { // wymaga wyrażenia zwracającego bool, nie zapisujemy nawiasów
 		fmt.Printf("Value %v is even \n", inputValue)
-	} else { // else musi wystąpic po nawiasie klamrowym
+	} else { // else musi wystąpić po nawiasie klamrowym
 		fmt.Printf("Value %v is not even \n", inputValue)
 	}
 
