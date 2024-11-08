@@ -54,6 +54,84 @@ func main() {
 		>>   przesunięcie bitów w prawo
 	*/
 
+	// Instrukcja warunkowa
+
+	inputValue := 5
+
+	if inputValue%2 == 0 { // wymaga wyrażenia zwracającego bool, nie zapisujemy nawiasów
+		fmt.Printf("Value %v is even \n", inputValue)
+	} else { // else musi wystąpic po nawiasie klamrowym
+		fmt.Printf("Value %v is not even \n", inputValue)
+	}
+
+	// wyrażenia logiczne mogą być skracane, jeśli ich rezultat jest znany po rozwinięciu ich części
+	// blok else jest opcjonalny
+	// można dodać wiele bloków if else
+
+	// Instrukcja switch
+
+	switch inputValue {
+	case 1:
+		fmt.Println("One")
+	case 2:
+		fmt.Println("Two")
+	case 3, 4, 5:
+		fmt.Println("Greater than 2")
+	default:
+		fmt.Printf("Unknown")
+	}
+
+	switch {
+	case inputValue <= 2:
+		fmt.Println("Lower than 3")
+	case inputValue > 3:
+		fmt.Println("Greater than 2")
+	}
+
+	/*
+		var otherOnputValue any;
+
+		switch otherOnputValue.(type) {
+		case bool:
+			fmt.Println("Bool")
+		case int:
+			fmt.Println("Int")
+		default:
+			fmt.Println("Unknown")
+		}
+	*/
+
+	// Pętle
+
+	for i := 0; i < 10; i++ {
+		if i == 5 {
+			continue
+		}
+		fmt.Printf("Counter: %v\n", i)
+		if i > 7 {
+			break
+		}
+	}
+
+	j := 0
+	for j <= 10 {
+		fmt.Printf("Counter: %v\n", j)
+		j++
+	}
+
+	for x := range 5 {
+		fmt.Printf("Counter: %v\n", x)
+	}
+
+	colors := [3]string{"red", "blue", "yello"}
+	for idx, color := range colors {
+		fmt.Printf("Color: %v has index %v \n", color, idx)
+	}
+
+	for {
+		fmt.Println("GO")
+		break
+	}
 }
 
 func basicTypes() {
