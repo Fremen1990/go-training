@@ -2,9 +2,56 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+
+	// "training.pl/examples/common"
+	// . "training.pl/examples/common" // import bez prefiksu/namespace
+	// c "training.pl/examples/common" // import z aliasowaniem
+	_ "training.pl/examples/common" // ignorowanie blłedu kompilacji (przydatne kiedy chcemy załadowac moduł, który np. wykonuje jakoś kod)
 )
 
 func main() {
+	defer close()
+	errorsExamples()
+
+	//common.Add(1, 2)
+	//Add(1, 2)
+	//c.Add(1,2)
+}
+
+func readingAndParsingStandardInput() {
+	/*
+		reader := bufio.NewReader(os.Stdin)
+		text, readErr := reader.ReadString('\n')
+		if readErr == nil {
+			text = strings.TrimSuffix(text, "\n")
+			text = strings.TrimSuffix(text, "\r")
+			fmt.Println(text)
+		}
+	*/
+
+	/*
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		text := scanner.Text()
+		if err := scanner.Err(); err == nil {
+			fmt.Println(text)
+		}
+	*/
+
+	value := 3.1415
+	formattedValue := fmt.Sprintf("%.2f", value)
+	fmt.Println(formattedValue)
+
+	parsedValue, _ := strconv.ParseFloat(formattedValue, 64)
+	fmt.Println(parsedValue)
+}
+
+func close() {
+	fmt.Println("close()")
+}
+
+func structs() {
 	var myPath path = "/Users/Jan"
 	myPath.show()
 
@@ -34,6 +81,14 @@ func main() {
 	myRect := rect{10.0, 10.0}
 	showShape(&myRect)
 
+	//address := address{"Dobra", 38}
+	//address.show()
+	myClient := client{
+		"Jan Kowalski",
+		address{"Dobra", 38},
+	}
+	myClient.show()
+	myClient.address.show()
 }
 
 // alias typu
@@ -85,6 +140,31 @@ func (r *rect) show() {
 
 func showShape(shape shape) {
 	shape.show()
+}
+
+// type nesting
+/*type client struct {
+	name string
+	address address
+}*/
+
+// struct embedding
+type client struct {
+	name string
+	address
+}
+
+type address struct {
+	street      string
+	houseNumber int
+}
+
+func (c *client) show() {
+	fmt.Println("Client:", c.name)
+}
+
+func (a *address) show() {
+	fmt.Println("Address:", a.street, a.houseNumber)
 }
 
 func pointers() {
