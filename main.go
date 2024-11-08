@@ -3,6 +3,63 @@ package main
 import "fmt"
 
 func main() {
+	pointers()
+}
+
+func pointers() {
+	value := 10
+	otherValue := value // kopia wartości, otherValue jest równe 10
+	value = 0
+	fmt.Printf("Value: %v\n", value)
+	fmt.Printf("Other value: %v\n", otherValue)
+
+	result := double(otherValue) // kopia wartości
+
+	fmt.Printf("Value: %v\n", value)
+	fmt.Printf("Other value: %v\n", otherValue)
+	fmt.Printf("Result: %v\n", result)
+
+	otherResult := doubleWithPointer(&otherValue) // przkazujemy wskaźnik na adres pamięci zawierającej wartość otherValue
+	fmt.Printf("Value: %v\n", value)
+	fmt.Printf("Value: %v\n", otherValue)
+	fmt.Printf("Other result: %v\n", otherResult)
+
+	// Dla tablic
+	var arr = [...]int{1, 2, 3}
+	//var otherArr = arr // kopia wartości
+	var otherArrPointer = &arr // adres/wskazanie na adres oryginalnej tablicy w pamięci
+	//otherArr[0] = 0
+	otherArrPointer[0] = 0 // (*otherArrPointer)[0] = 0
+	fmt.Println(arr)
+	//fmt.Println(otherArr)
+	fmt.Println(otherArrPointer)
+
+	// Dla slices i maps nie trzeba używać wskaźników (dzialamy na referencji/widoku)
+	var slice = []int{1, 2, 3}
+	var otherSlice = slice
+	otherSlice[0] = 0
+	fmt.Println(slice)
+	fmt.Println(otherSlice)
+
+	originalMap := map[string]int{"foo": 1, "bar": 2}
+	copiedMap := originalMap // reference copy
+	copiedMap["foo"] = 42
+	// Both maps now reflect the change
+	fmt.Println("Original map:", originalMap)
+	fmt.Println("Copied map:", copiedMap)
+}
+
+func double(value int) int {
+	value += 1
+	return value * 2
+}
+
+func doubleWithPointer(valuePointer *int) int {
+	*valuePointer += 1
+	return *valuePointer * 2
+}
+
+func collections() {
 	// Tablice (Arrays)
 	// nazwaZmiennej := [length/...]typDanych{values}, indeksy liczone od 0 do n - 1
 
@@ -62,6 +119,7 @@ func main() {
 	// sortowanie
 	// slices.Sort(slice)
 	// sortowanie z użyciem funkcji
+
 	/*
 			fruits := []string{"peach", "banana", "kiwi"}
 
@@ -99,7 +157,7 @@ func main() {
 	// maps.Equal(map1, map2)
 
 	var newRatings = ratings
-	newRatings["a"] = 1.0
+	newRatings["a"] = 99.0
 
 	for key, value := range ratings {
 		fmt.Printf("%v: %f\n", key, value)
