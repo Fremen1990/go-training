@@ -18,9 +18,10 @@ func main() {
 	//Add(1, 2)
 	//c.Add(1,2)
 
-	exercises.MonetaryAmountExercise()
+	//exercises.MonetaryAmountExercise()
+	exercises.TicTacToeExercise()
 
-	/*var row, col int
+	/*var col, row int
 	tokensCount, err := fmt.Scanln(&col, &row)
 	fmt.Println(tokensCount, err, row, col)*/
 
