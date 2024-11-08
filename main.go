@@ -2,13 +2,84 @@ package main
 
 import "fmt"
 
+func main() {
+	fmt.Printf("Użytkownik %v %v ma wiek zdefiniowany jako %T\n", "Jan", "Kowalski", 32)
+	fmt.Printf("Pensja użytkownika wynosi: %06.2f", 2300.23445) // https://pkg.go.dev/fmt@go1.23.3
+
+	/*
+		Operatory arytmetyczne
+		+	dodawanie
+		-	odejmowanie
+		*	mnożenie
+		/	dzielenie
+		%	dzielenie modulo
+		++	inkrementacja
+		--	dekrementacja
+	*/
+
+	var value = 100
+	var otherValue = 20.0
+	var calculationResult = float64(value) * otherValue // typ musi być jawanie skonwertowany
+	fmt.Printf("Result: %.2f\n", calculationResult)
+
+	/*
+		Operatory przypisania
+		=    przypisanie
+		+=, -=, *=, /=, %=, &=, |=, ^=, >>=, <<=  skrócony zapis x = x [operator] x
+	*/
+
+	/*
+		Operatory porównania
+		==   równość
+		!=   nierówność
+		>    większy
+		<    mniejszy
+		>=   większy/równy
+		<=   mniejszy/równy
+	*/
+
+	/*
+		Operatory logiczne
+		&&   i
+		||   lub
+		!    zaprzeczenie
+	*/
+
+	/*
+		Operatory bitowe
+		&    i
+		|    lub
+		^    xor
+		<<   przesunięcie bitów w lewo
+		>>   przesunięcie bitów w prawo
+	*/
+}
+
+func types() {
+	/*
+			int - rozmiar zależy od platformy (32bit/64bit), typ domyślny dla literałów całkowitych
+		    dodatkowo występują int8, int16, int32, int64
+
+			uint - rozmiar zależy od platformy (32bit/64bit), tylko wartości dodatnie
+			dodatkowo występują uint8, uint16, uint32, uint64
+
+			float64, float32 - reprezentują wartości zmiennoprzecinkowe, domyślnie float64
+
+			bool - przechowuje wartości true lub false
+
+			string - przechowuje tekst zakodowany w utf8
+	*/
+
+	// Jeżeli zmienna nie zostanie zainicjalizowana wprost to będzie ona posiadała wartość tzw. zerową/domyślną
+	var salary int
+	var isActive bool
+	fmt.Println(salary)
+	fmt.Println(isActive)
+}
+
 var currentYear = 2024
 
 const CURRENT_MONTH = 11
-
-func main() {
-
-}
 
 func variables() {
 	// fmt.Println("Hello World")
