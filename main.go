@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	fmt.Printf("Użytkownik %v %v ma wiek zdefiniowany jako %T\n", "Jan", "Kowalski", 32)
-	fmt.Printf("Pensja użytkownika wynosi: %06.2f", 2300.23445) // https://pkg.go.dev/fmt@go1.23.3
+	fmt.Printf("Pensja użytkownika wynosi: %010.2f\n", 2300.23445) // https://pkg.go.dev/fmt@go1.23.3
 
 	/*
 		Operatory arytmetyczne
@@ -53,9 +53,10 @@ func main() {
 		<<   przesunięcie bitów w lewo
 		>>   przesunięcie bitów w prawo
 	*/
+
 }
 
-func types() {
+func basicTypes() {
 	/*
 			int - rozmiar zależy od platformy (32bit/64bit), typ domyślny dla literałów całkowitych
 		    dodatkowo występują int8, int16, int32, int64
