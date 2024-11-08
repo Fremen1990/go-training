@@ -1,9 +1,90 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	pointers()
+	var myPath path = "/Users/Jan"
+	myPath.show()
+
+	fmt.Println(person{"Jan", "Kowalski", 40})                  // bez podawania kluczy, kolejność ma znacznie
+	fmt.Println(person{lastName: "Kowalski", firstName: "Jan"}) // z podawaniem kluczy, kolejność nie ma znacznia, można nie podawać wszytskich elementów
+
+	user := person{"Jan", "Kowalski", 40}
+	// otherUser := user // utworzenie kopii
+	otherUser := &user // wskaźnik na oryginał
+	fmt.Println(*otherUser)
+
+	user.lastName = "Nowak"
+	user.show()
+
+	admin := createPerson("Anna", "Nowak", 20)
+	admin.show()
+
+	account := struct {
+		number  string
+		balance float64
+	}{
+		"0000001",
+		0.0,
+	}
+	fmt.Println(account)
+
+	myRect := rect{10.0, 10.0}
+	showShape(&myRect)
+
+}
+
+// alias typu
+type text = string
+
+// utworzenie nowego typu na bazie istniejącego
+type path string
+
+func (p *path) show() {
+	fmt.Println(*p)
+}
+
+type person struct {
+	firstName string
+	lastName  string
+	age       int
+}
+
+// działanie na wskaźniku pozwala na uniknąć tworzenia kopii struktury
+func (p *person) show() {
+	fmt.Println(*p)
+}
+
+func createPerson(fistName, lastName string, age int) *person {
+	return &person{fistName, lastName, age}
+}
+
+type display interface {
+	show()
+}
+
+type shape interface {
+	area() float64
+	// show()
+	display
+}
+
+type rect struct {
+	width, height float64
+}
+
+func (r *rect) area() float64 {
+	return r.width * r.height
+}
+
+func (r *rect) show() {
+	fmt.Println("rect", r.width, r.height)
+}
+
+func showShape(shape shape) {
+	shape.show()
 }
 
 func pointers() {
@@ -21,17 +102,16 @@ func pointers() {
 
 	otherResult := doubleWithPointer(&otherValue) // przkazujemy wskaźnik na adres pamięci zawierającej wartość otherValue
 	fmt.Printf("Value: %v\n", value)
-	fmt.Printf("Value: %v\n", otherValue)
+	fmt.Printf("Other value: %v\n", otherValue)
 	fmt.Printf("Other result: %v\n", otherResult)
 
 	// Dla tablic
 	var arr = [...]int{1, 2, 3}
 	//var otherArr = arr // kopia wartości
 	var otherArrPointer = &arr // adres/wskazanie na adres oryginalnej tablicy w pamięci
-	//otherArr[0] = 0
-	otherArrPointer[0] = 0 // (*otherArrPointer)[0] = 0
+	otherArrPointer[0] = 0     // (*otherArrPointer)[0] = 0
+
 	fmt.Println(arr)
-	//fmt.Println(otherArr)
 	fmt.Println(otherArrPointer)
 
 	// Dla slices i maps nie trzeba używać wskaźników (dzialamy na referencji/widoku)
