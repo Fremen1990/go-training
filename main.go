@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"training.pl/examples/exercises"
 
 	// "training.pl/examples/common"
 	// . "training.pl/examples/common" // import bez prefiksu/namespace
@@ -11,40 +11,19 @@ import (
 )
 
 func main() {
-	defer close()
-	errorsExamples()
+	// defer close()
+	// errorsExamples()
 
 	//common.Add(1, 2)
 	//Add(1, 2)
 	//c.Add(1,2)
-}
 
-func readingAndParsingStandardInput() {
-	/*
-		reader := bufio.NewReader(os.Stdin)
-		text, readErr := reader.ReadString('\n')
-		if readErr == nil {
-			text = strings.TrimSuffix(text, "\n")
-			text = strings.TrimSuffix(text, "\r")
-			fmt.Println(text)
-		}
-	*/
+	exercises.MonetaryAmountExercise()
 
-	/*
-		scanner := bufio.NewScanner(os.Stdin)
-		scanner.Scan()
-		text := scanner.Text()
-		if err := scanner.Err(); err == nil {
-			fmt.Println(text)
-		}
-	*/
+	/*var row, col int
+	tokensCount, err := fmt.Scanln(&col, &row)
+	fmt.Println(tokensCount, err, row, col)*/
 
-	value := 3.1415
-	formattedValue := fmt.Sprintf("%.2f", value)
-	fmt.Println(formattedValue)
-
-	parsedValue, _ := strconv.ParseFloat(formattedValue, 64)
-	fmt.Println(parsedValue)
 }
 
 func close() {
