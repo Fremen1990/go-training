@@ -28,10 +28,12 @@ func main() {
 	/*var budget = exercises.Budget{}
 	budget.Add(exercises.NewBudgetEntry(20.0, exercises.Deposit, "Bonus"))
 	budget.Add(exercises.NewBudgetEntry(10.0, exercises.Withdraw, "Cinema"))*/
-	budget := exercises.Load()
-	//budget.FromArgs()
+	/*budget := exercises.Load()
+	budget.FromArgs()
 	budget.Print()
-	budget.Save()
+	budget.Save()*/
+
+	exercises.Echo()
 
 }
 
