@@ -178,14 +178,13 @@ func Run() {
 	go blue()
 	time.Sleep(20 * time.Second)
 	fmt.Println("Done")
-}
-*/
+}*/
+
 // https://dev.to/ietxaniz/go-deadlock-detection-delock-library-1eig
 
 // Atomics
 
-/*
-var (
+/*var (
 	money int64 = 100
 	value = 10
 )
@@ -214,13 +213,11 @@ func Run() {
 
 	time.Sleep(10 * time.Second)
 	fmt.Println("Current value:", money)
-}
-*/
+}*/
 
 // Cyclic barrier
 
-/*
-func execute(name string, sleepTime int, barrier *Barrier) {
+/*func execute(name string, sleepTime int, barrier *Barrier) {
 	for {
 		println(name, "running")
 		time.Sleep(time.Duration(sleepTime) * time.Second)
@@ -235,8 +232,7 @@ func Run() {
 	go execute("Two", 10, barrier)
 	go execute("Three", 6, barrier)
 	time.Sleep(100 * time.Second)
-}
-*/
+}*/
 
 // Semaphore
 

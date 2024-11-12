@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"training.pl/examples/concurrency"
-
 	// "training.pl/examples/common"
 	// . "training.pl/examples/common" // import bez prefiksu/namespace
 	// c "training.pl/examples/common" // import z aliasowaniem
@@ -38,7 +36,8 @@ func main() {
 	//exercises.Find()
 	//exercises.Grep()
 	//concurrency.Run()
-	concurrency.ProducerConsumerClassic()
+	//concurrency.ProducerConsumerClassic()
+	//concurrency.Run()
 }
 
 func close() {
