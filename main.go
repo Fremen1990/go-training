@@ -33,8 +33,8 @@ func main() {
 	budget.Print()
 	budget.Save()*/
 
-	exercises.Echo()
-
+	//exercises.Echo()
+	exercises.Cat()
 }
 
 func close() {
