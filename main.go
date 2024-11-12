@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"training.pl/examples/exercises/db"
+	"training.pl/examples/concurrency"
 
 	// "training.pl/examples/common"
 	// . "training.pl/examples/common" // import bez prefiksu/namespace
@@ -40,7 +40,8 @@ func main() {
 	//concurrency.Run()
 	//concurrency.ProducerConsumerClassic()
 	//concurrency.Run()
-	db.Run()
+	//db.Run()
+	concurrency.Channels()
 }
 
 func close() {
