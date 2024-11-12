@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"training.pl/examples/exercises"
+	"training.pl/examples/concurrency"
 
 	// "training.pl/examples/common"
 	// . "training.pl/examples/common" // import bez prefiksu/namespace
@@ -36,7 +36,8 @@ func main() {
 	//exercises.Echo()
 	//exercises.Cat()
 	//exercises.Find()
-	exercises.Grep()
+	//exercises.Grep()
+	concurrency.Run()
 }
 
 func close() {
