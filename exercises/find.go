@@ -29,7 +29,6 @@ func Find() {
 		log.Fatalf("Error reading file")
 		return
 	}
-
 }
 
 func onElement(fileType, name string) filepath.WalkFunc {

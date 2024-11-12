@@ -44,11 +44,11 @@ func cat(path string, printerFn printer) error {
 	lineNumber := 0
 	for scanner.Scan() {
 		line := scanner.Text()
-		lineNumber++
-		printerFn(lineNumber, line)
 		if scannerErr := scanner.Err(); scannerErr != nil {
 			return scannerErr
 		}
+		lineNumber++
+		printerFn(lineNumber, line)
 	}
 	return nil
 }

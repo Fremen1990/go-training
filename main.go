@@ -35,7 +35,8 @@ func main() {
 
 	//exercises.Echo()
 	//exercises.Cat()
-	exercises.Find()
+	//exercises.Find()
+	exercises.Grep()
 }
 
 func close() {
