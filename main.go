@@ -37,7 +37,8 @@ func main() {
 	//exercises.Cat()
 	//exercises.Find()
 	//exercises.Grep()
-	concurrency.Run()
+	//concurrency.Run()
+	concurrency.ProducerConsumerClassic()
 }
 
 func close() {
