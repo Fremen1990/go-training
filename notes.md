@@ -15,7 +15,7 @@
 
 4. Zaimplementuj poniższe narzędzia linii komend:
    - echo - drukuje tekst podany jako argumenty programu na standardowym wyjściu
-   - cat  - drukuje zawartość wskazanych plików na standardowym wyjściu,
+   - cat - drukuje zawartość wskazanych plików na standardowym wyjściu,
      zezwala na opcjonalne numerowanie wierszy (przełącznik -n),
      numerowanie wierszy można wyłączyć dla pustych wierszy (przełącznik -nb)
    - find - przeszukuje i drukuje ścieżki plików i/lub katalogów, których nazwy pasują do wskazanego wzorca i typu,
