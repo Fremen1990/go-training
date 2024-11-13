@@ -43,7 +43,8 @@ func main() {
 	//db.Run()
 	//concurrency.Channels()
 	//concurrency.ProducerConsumerChannels()
-	concurrency.FindFiles()
+	//concurrency.FindFiles()
+	concurrency.Barbers()
 }
 
 func close() {
