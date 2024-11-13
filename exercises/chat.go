@@ -1,3 +1,10 @@
+/*
+Dodaj:
+- możliowść komunikacji 1 na 1 (prywatne wiadomości)
+- powiadamianie klientów o podłączeniu/rozłaczeniu uczestnika czatu
+- możliwość przesłania pliku (na czacie prywatnym)
+*/
+
 package exercises
 
 import (
