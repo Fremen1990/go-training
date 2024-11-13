@@ -1,0 +1,15 @@
+POST http://localhost:8080/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Nowak",
+  "isActive": true
+}
+
+###
+
+GET http://localhost:8080/users/1
+Accept: application/json
+Content-Type: application/json

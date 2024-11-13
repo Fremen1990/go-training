@@ -45,7 +45,7 @@ func main() {
 	//concurrency.ProducerConsumerChannels()
 	//concurrency.FindFiles()
 	//concurrency.Barbers()
-	exercises.Chat()
+	exercises.RestApi()
 }
 
 func close() {
