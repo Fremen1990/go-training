@@ -41,7 +41,7 @@ func getUsers(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	var users []User = make([]User, 0)
+	var users = make([]User, 0)
 	for rows.Next() {
 		var user User = User{}
 		rows.Scan(&user.ID, &user.Name, &user.Email)
@@ -63,12 +63,13 @@ func getUserById(c *gin.Context) {
 		return
 	}
 	rows.Next()
-	var user User = User{}
+	var user = User{}
 	rows.Scan(&user.ID, &user.Name, &user.Email)
 	if user.ID == 0 {
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+	} else {
+		c.JSON(http.StatusOK, user)
 	}
-	c.JSON(http.StatusOK, user)
 }
 
 func createUser(c *gin.Context) {

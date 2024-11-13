@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"training.pl/examples/exercises"
+	"training.pl/examples/exercises/db"
 
 	// "training.pl/examples/common"
 	// . "training.pl/examples/common" // import bez prefiksu/namespace
@@ -45,7 +45,8 @@ func main() {
 	//concurrency.ProducerConsumerChannels()
 	//concurrency.FindFiles()
 	//concurrency.Barbers()
-	exercises.RestApi()
+	//exercises.RestApi()
+	db.DatabaseExercise()
 }
 
 func close() {

@@ -3,9 +3,12 @@ package db
 import (
 	"errors"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"io"
+	"net/http"
 	"os"
 	"slices"
+	"strconv"
 	"sync"
 )
 
@@ -167,7 +170,7 @@ type User struct {
 	IsActive  bool
 }
 
-func Run() {
+func DatabaseExercise() {
 	db, _ := Db("users.db")
 	defer db.Close()
 
@@ -177,12 +180,94 @@ func Run() {
 	}
 	fmt.Println(record)*/
 
-	_ = db.DeleteById(1)
+	//_ = db.DeleteById(1)
 
 	//_ = db.UpdateById(1, &User{"Jan", "Nowak", false})
 
-	user := User{}
+	/*user := User{}
 	if db.FindById(1, &user) == nil {
 		fmt.Println("User: ", user)
+	}*/
+
+	router := gin.Default()
+	router.Use(func(c *gin.Context) {
+		c.Set("db", db)
+	})
+
+	router.POST("/users", createUser)
+	router.GET("/users/:id", getUser)
+	router.PUT("/users/:id", updateUser)
+	router.DELETE("/users/:id", deleteUser)
+
+	router.Run(":8080")
+}
+
+func getDb(c *gin.Context) *Database {
+	db, _ := c.Get("db")
+	return db.(*Database)
+}
+
+type CreateUserResponse struct {
+	Id int64
+}
+
+func createUser(c *gin.Context) {
+	var user User
+	err := c.Bind(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
 	}
+	record, _ := getDb(c).Insert(user)
+	c.Header("Location", fmt.Sprintf("/api/users/%d", record.Id))
+	c.JSON(http.StatusCreated, &CreateUserResponse{record.Id})
+}
+
+func getUser(c *gin.Context) {
+	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
+	}
+	user := User{}
+	err = getDb(c).FindById(id, &user)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{})
+		return
+	}
+	c.JSON(http.StatusOK, &user)
+}
+
+func updateUser(c *gin.Context) {
+	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
+	}
+	var user User
+	err = c.Bind(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
+	}
+	err = getDb(c).UpdateById(id, &user)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{})
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+
+func deleteUser(c *gin.Context) {
+	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{})
+		return
+	}
+	err = getDb(c).DeleteById(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{})
+		return
+	}
+	c.Status(http.StatusNoContent)
 }
