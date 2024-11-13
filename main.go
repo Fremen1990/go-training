@@ -41,7 +41,9 @@ func main() {
 	//concurrency.ProducerConsumerClassic()
 	//concurrency.Run()
 	//db.Run()
-	concurrency.Channels()
+	//concurrency.Channels()
+	//concurrency.ProducerConsumerChannels()
+	concurrency.FindFiles()
 }
 
 func close() {
