@@ -10,7 +10,7 @@ import (
 )
 
 const serverAddress = "localhost:8000"
-const bufferSize = 20
+const bufferSize = 128
 
 func Chat() {
 	if len(os.Args) > 1 {
@@ -78,11 +78,11 @@ func handleConnection(conn net.Conn, messages chan<- *message) {
 }
 
 func listen(messages <-chan *message, connections []net.Conn, mutex *sync.RWMutex) {
-	for message := range messages {
+	for msg := range messages {
 		mutex.RLock()
 		for _, conn := range connections {
-			if conn != message.senderConn {
-				_, writeErr := conn.Write(message.bytes)
+			if conn != msg.senderConn {
+				_, writeErr := conn.Write(msg.bytes)
 				if writeErr != nil {
 					log.Println("Write error: " + writeErr.Error())
 				}
@@ -104,6 +104,7 @@ func client() {
 		}
 	}(conn)
 	scanner := bufio.NewScanner(os.Stdin)
+
 	for scanner.Scan() {
 		text := scanner.Text()
 		textBytes, _ := db.ToBytes(text)
@@ -111,8 +112,9 @@ func client() {
 			log.Println("Message too long")
 			continue
 		}
+		log.Printf("Sending message %d bytes long", len(textBytes))
 		bytes := make([]byte, bufferSize)
-		copy(bytes, textBytes)
+		copy(bytes, textBytes[:])
 		_, writeErr := conn.Write(bytes)
 		if writeErr != nil {
 			log.Println("Write error: " + writeErr.Error())
