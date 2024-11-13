@@ -2,6 +2,7 @@ package exercises
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -42,7 +43,20 @@ func server() {
 	messages := make(chan *message, 100)
 	mutex := &sync.RWMutex{}
 
-	go listen(messages, connections, mutex)
+	go func() {
+		for msg := range messages {
+			mutex.RLock()
+			for _, conn := range connections {
+				if conn != msg.senderConn {
+					_, writeErr := conn.Write(msg.bytes)
+					if writeErr != nil {
+						log.Println("Write error: " + writeErr.Error())
+					}
+				}
+			}
+			mutex.RUnlock()
+		}
+	}()
 
 	for {
 		connection, acceptErr := listener.Accept()
@@ -77,21 +91,6 @@ func handleConnection(conn net.Conn, messages chan<- *message) {
 	}
 }
 
-func listen(messages <-chan *message, connections []net.Conn, mutex *sync.RWMutex) {
-	for msg := range messages {
-		mutex.RLock()
-		for _, conn := range connections {
-			if conn != msg.senderConn {
-				_, writeErr := conn.Write(msg.bytes)
-				if writeErr != nil {
-					log.Println("Write error: " + writeErr.Error())
-				}
-			}
-		}
-		mutex.RUnlock()
-	}
-}
-
 func client() {
 	conn, err := net.Dial("tcp", serverAddress)
 	if err != nil {
@@ -103,6 +102,9 @@ func client() {
 			panic(connectionErr)
 		}
 	}(conn)
+
+	go listenForMessages(conn)
+
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
@@ -120,5 +122,22 @@ func client() {
 			log.Println("Write error: " + writeErr.Error())
 			break
 		}
+	}
+}
+
+func listenForMessages(conn net.Conn) {
+	bytes := make([]byte, bufferSize)
+	for {
+		_, readErr := conn.Read(bytes)
+		if readErr != nil {
+			log.Println("Read error: " + readErr.Error())
+			break
+		}
+		var text string
+		err := db.FromBytes(bytes, &text)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(text)
 	}
 }
