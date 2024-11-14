@@ -2,16 +2,24 @@
    Struktura powinna umożliwiać dodawanie i odejmowanie innych wartości walutowych (metody add, subtract).
    Obsłuż wyjątek wynikający z próby wykonania operacji na różnych walutach. Dodaj funkcję konstruktora.
 
+----
+
+
 2. Napisz grę w kółko i krzyżyk
    Plansza ma wymiary 3 x 3 pola.
    Gracze na zmianę zajmują wolne pola, umieszczając na nich swój znak (kółko lub krzyżyk).
    Gra kończy się, gdy wszystkie pola zostaną zajęte lub jeden z graczy zajmie zwycięską sekwencję (kolumnę, rząd lub przekątną).
    Interfejs gry powinien opierać się na wierszu poleceń/terminalu.
 
+---
+
+
 3. Napisz aplikację do rejestrowania wpływów/wydatków na potrzeby budżetu domowego.
    Aplikacja powinna rejestrować kwotę, rodzaj operacji, timestamp i jej opis (podane jako argumenty wiersza poleceń)
    oraz generować raport/tabelę w terminalu. Raport powinien zawierać wszystkie operacje i podsumowanie/saldo końcowe.
    Aplikacja powinna zapisywać dane wprowadzone przez użytkownika w pliku tekstowym (json).
+
+----
 
 4. Zaimplementuj poniższe narzędzia linii komend:
    - echo - drukuje tekst podany jako argumenty programu na standardowym wyjściu
@@ -22,10 +30,15 @@
      dozwolone typy to plik, katalog lub link symboliczny
    - grep - wyszukuje i drukuje wiersze zawierające wskazany tekst/wzorzec ze wskazanych plików/ścieżek
 
+----
+
 5. Stwórsz bazę danych opartą o plik płaski przechowującą dane w postaci binarnej (https://gobyexample.com/reading-files).
    Baza powinna umożliwiać wykonywanie następujących operacje: ADD, READ, UPDATE, DELETE na podstwie podango id rekordu.
    W celu uzyskania lepszej wydajnoci, wprowadź indeksowanie pozycji rekordu w pliku i/lub pamięć podręczną.
    Pomyśl o optymalnym sposobie usuwania rekordów i ponownym wykorzystaniem miejsca po usuniętym rekordzie.
+
+
+---
 
 6. The Sleeping Barber dilemma, a classic computer science problem which illustrates the complexities that arise when 
    there are multiple operating system processes. Here, we have a finite number of barbers, a finite number of seats in 
@@ -41,3 +54,9 @@
 		- after the shop is closed and there are no clients left in the waiting area, the barber goes home
    The Sleeping Barber was originally proposed in 1965 by computer science pioneer Edsger Dijkstra.
    https://en.wikipedia.org/wiki/Sleeping_barber_problem
+
+-----
+
+### GO Books 
+
+https://github.com/dariubs/GoBooks
